@@ -1,17 +1,16 @@
 import os
 from pathlib import Path
 
+# Получаем абсолютный путь к mlruns относительно корня проекта
+PROJECT_ROOT = Path(__file__).parent.parent.resolve()
+MLRUNS_PATH = PROJECT_ROOT / "mlruns"
+# Устанавливаем URI
+os.environ["MLFLOW_TRACKING_URI"] = f"file://{MLRUNS_PATH}"
+
 import mlflow
 import pandas as pd
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-
-# Получаем абсолютный путь к mlruns относительно корня проекта
-PROJECT_ROOT = Path(__file__).parent.parent.resolve()
-MLRUNS_PATH = PROJECT_ROOT / "mlruns"
-
-# Устанавливаем URI
-os.environ["MLFLOW_TRACKING_URI"] = f"file://{MLRUNS_PATH}"
 
 model_name = "diabetes_model"
 model = mlflow.pyfunc.load_model(f"models:/{model_name}@Production")
