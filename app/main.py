@@ -1,13 +1,20 @@
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
+import os
+from pathlib import Path
+
 import mlflow
 import pandas as pd
-import os
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
 
-# Загружаем модель из MLflow (последняя версия в Production)
+# Получаем абсолютный путь к mlruns относительно корня проекта
+PROJECT_ROOT = Path(__file__).parent.parent.resolve()
+MLRUNS_PATH = PROJECT_ROOT / "mlruns"
+
+# Устанавливаем URI
+os.environ["MLFLOW_TRACKING_URI"] = f"file://{MLRUNS_PATH}"
+
 model_name = "diabetes_model"
-os.environ["MLFLOW_TRACKING_URI"] = "file://" + os.path.abspath("../mlruns")
-model = mlflow.pyfunc.load_model(f"models:/{model_name}/Production")
+model = mlflow.pyfunc.load_model(f"models:/{model_name}@Production")
 
 app = FastAPI(title="Diabetes Prediction API")
 

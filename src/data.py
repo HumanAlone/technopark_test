@@ -6,13 +6,9 @@ def load_data(path: str) -> pd.DataFrame:
     return df
 
 def clean_data(df: pd.DataFrame) -> pd.DataFrame:
-    """Очистка: удаление дубликатов."""
     original_len = len(df)
     
-    # Удаляем полные дубликаты
     df = df.drop_duplicates().reset_index(drop=True)
-    
-    # Удаляем дубликаты по id (оставляем первую запись)
     if "id" in df.columns:
         df = df.drop_duplicates(subset=["id"]).reset_index(drop=True)
     
