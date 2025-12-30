@@ -8,12 +8,13 @@ from sklearn.model_selection import train_test_split
 from src.data import clean_data, load_data, validate_data
 from src.model import get_categorical_features, train_model
 
-mlflow.set_tracking_uri("mlruns")
+mlflow.set_tracking_uri("./mlruns")
 mlflow.set_experiment("diabetes_prediction")
+
 
 if __name__ == "__main__":
     df = load_data("data/train.csv")
-    df = df.sample(n=5000, random_state=42).reset_index(drop=True)
+    df = df.sample(n=2500, random_state=42).reset_index(drop=True)
     df = clean_data(df)
     df = validate_data(df)
 
@@ -30,7 +31,7 @@ if __name__ == "__main__":
 
         mlflow.log_params(
             {
-                "iterations": 200,
+                "iterations": 50,
                 "learning_rate": 0.1,
                 "depth": 4,
                 "n_train": len(X_train),

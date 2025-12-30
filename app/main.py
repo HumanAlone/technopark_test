@@ -1,11 +1,9 @@
 import os
 from pathlib import Path
 
-# Получаем абсолютный путь к mlruns относительно корня проекта
-PROJECT_ROOT = Path(__file__).parent.parent.resolve()
-MLRUNS_PATH = PROJECT_ROOT / "mlruns"
 # Устанавливаем URI
-os.environ["MLFLOW_TRACKING_URI"] = f"file://{MLRUNS_PATH}"
+os.environ["MLFLOW_TRACKING_URI"] = "file:///app/mlruns"
+
 
 import mlflow
 import pandas as pd

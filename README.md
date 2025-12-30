@@ -18,6 +18,8 @@ uvicorn app.main:app --host 0.0.0.0 --port 8000
 
 ### Инференс с помощь docker
 
+**Docker-образ не поддерживается из-за ограничений MLflow - сохраняет абсолютные пути**
+
 ```bash
 docker build -t model-api .
 docker run -p 8000:8000 model-api
@@ -88,6 +90,8 @@ diabetes-prediction/
 │   ├── test_model_io.py         # Проверка формата вход/выход
 │   └── test_regression.py       # Проверка, что скор не упал
 │
+├── .dockerignore                # Игнорируем лишнее при сборке Docker
+├── .gitignore                   # Игнорируем лишнее при загрузке в Git
 ├── Dockerfile                   # Докер образ
 ├── README.md                    # Описание проекта
 ├── requirements.txt             # Зависимости
@@ -95,4 +99,3 @@ diabetes-prediction/
 ├── task2.md                     # Задание 2
 └── train.py                     # Скрипт обучения модели с MLflow
 ```
-

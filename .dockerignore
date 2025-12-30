@@ -1,0 +1,11 @@
+# .dockerignore
+.git
+__pycache__/
+*.pyc
+venv/
+.env
+tests/
+data/*.csv
+*.log
+.gitignore
+README.md

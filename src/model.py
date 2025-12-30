@@ -13,8 +13,8 @@ def get_categorical_features(
 def train_model(X_train: pd.DataFrame, y_train: pd.Series, cat_features: list):
     """Обучаем CatBoost-модель."""
     model = CatBoostClassifier(
-        iterations=200,
-        learning_rate=0.05,
+        iterations=50,
+        learning_rate=0.1,
         depth=4,
         verbose=False,
         random_state=42,
