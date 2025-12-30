@@ -2,7 +2,7 @@ import os
 from pathlib import Path
 
 # Устанавливаем URI
-os.environ["MLFLOW_TRACKING_URI"] = "file:///app/mlruns"
+os.environ["MLFLOW_TRACKING_URI"] = "./mlruns"
 
 
 import mlflow

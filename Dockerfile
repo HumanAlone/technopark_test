@@ -3,7 +3,7 @@ FROM python:3.9-slim
 WORKDIR /app
 
 COPY requirements.txt .
-
+COPY mlruns/ ./mlruns/
 COPY app/ ./app/
 COPY src/ ./src/
 
